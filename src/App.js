@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./pages/home/Home"
+import Login from "./pages/login/Login"
+import List from "./pages/list/List"
+import Single from "./pages/single/Single"
+import New from "./pages/new/New"
+import Navbar from "./components/navbar/Navbar"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+	return (
+		<div>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/">
+						<Route index element={<Home></Home>}></Route>
+						<Route path="/login" element={<Login></Login>}></Route>
+						<Route path="users">
+							<Route index element={<List></List>}></Route>
+							<Route path=":userId" element={<Single></Single>}></Route>
+							<Route path="new" element={<New></New>}></Route>
+						</Route>
+						<Route path="products">
+							<Route index element={<List></List>}></Route>
+							<Route path=":productId" element={<Single></Single>}></Route>
+							<Route path="new" element={<New></New>}></Route>
+						</Route>
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</div>
+	)
 }
 
-export default App;
+export default App
